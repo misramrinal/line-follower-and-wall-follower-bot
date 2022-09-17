@@ -1,0 +1,21 @@
+#VRML_OBJ R2022a utf8
+CurvedRoadSegment {
+  translation -0.69 -0.83 -0.0399
+  width 0.11
+  numberOfLanes 1
+  rightBorder FALSE
+  leftBorder FALSE
+  curvatureRadius 2
+  appearance DEF black_road PBRAppearance {
+    baseColor 0 0 0
+    metalness 0
+  }
+  pavementAppearance Pavement {
+    type "black stone"
+  }
+  bottomTexture [
+    ""
+  ]
+  locked FALSE
+  roadBoundingObject TRUE
+}

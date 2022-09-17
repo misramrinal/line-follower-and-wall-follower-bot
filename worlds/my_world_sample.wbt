@@ -1,0 +1,544 @@
+#VRML_SIM R2022a utf8
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.31232999415922513 0.11024910217847639 0.9435545083445569 2.0803503421040324
+  position 1.36689659539895 -5.826264256505503 3.261734185557226
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+RectangleArena {
+  translation 0 -0.59 -0.04
+  floorSize 10 10
+  floorAppearance PBRAppearance {
+    metalness 0
+  }
+}
+DEF wall_inclined_short Solid {
+  translation -2.15395 -0.752798 0
+  rotation 0 0 1 2.4
+  children [
+    DEF wall_shape Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+        metalness 0
+      }
+      geometry Box {
+        size 0.3 0.1 0.2
+      }
+      castShadows FALSE
+    }
+  ]
+  name "solid(2)"
+  boundingObject USE wall_shape
+  physics Physics {
+    density 1
+  }
+  locked TRUE
+}
+DEF wall_inclined_long Solid {
+  translation -1.47338 -0.779461 0
+  rotation 0 0 1 2.4
+  children [
+    DEF wall_shape Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+        metalness 0
+      }
+      geometry Box {
+        size 1.3 0.1 0.2
+      }
+      castShadows FALSE
+    }
+  ]
+  name "solid(1)"
+  boundingObject USE wall_shape
+  physics Physics {
+    density 1
+  }
+  locked TRUE
+}
+DEF wall_straight Solid {
+  translation 0 -1.18 0
+  children [
+    DEF wall_shape Shape {
+      appearance PBRAppearance {
+        baseColor 1 0 0
+        metalness 0
+      }
+      geometry Box {
+        size 2 0.1 0.2
+      }
+      castShadows FALSE
+    }
+  ]
+  boundingObject USE wall_shape
+  physics Physics {
+    density 1
+  }
+  locked TRUE
+}
+DEF wall_robot Robot {
+  translation 0.8 -1.4 0
+  children [
+    DistanceSensor {
+      translation 0.1 -0.09 0
+      rotation 0 0 -1 1.57
+      children [
+        DEF ir_shape Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry Box {
+            size 0.05 0.01 0.01
+          }
+        }
+      ]
+      name "ir_front_left"
+      boundingObject USE ir_shape
+      physics Physics {
+      }
+      locked TRUE
+      lookupTable [
+        0 0 0
+        0.2 1000 0
+      ]
+      type "infra-red"
+    }
+    DistanceSensor {
+      translation -0.07 0.09 0
+      rotation 0 0 1 1.57
+      children [
+        DEF ir_shape Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry Box {
+            size 0.05 0.01 0.01
+          }
+        }
+      ]
+      name "ir_front_right"
+      boundingObject USE ir_shape
+      physics Physics {
+      }
+      locked TRUE
+      lookupTable [
+        0 0 0
+        0.2 1000 0
+      ]
+      type "infra-red"
+    }
+    DistanceSensor {
+      translation 0.07 0.09 0
+      rotation 0 0 1 1.57
+      children [
+        DEF ir_shape Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry Box {
+            size 0.05 0.01 0.01
+          }
+        }
+      ]
+      name "ir_rear_right"
+      boundingObject USE ir_shape
+      physics Physics {
+      }
+      locked TRUE
+      lookupTable [
+        0 0 0
+        0.2 1000 0
+      ]
+      type "infra-red"
+    }
+    DEF FR HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 -1 0
+        anchor -0.07 0.09 0
+      }
+      device [
+        RotationalMotor {
+          name "fr_motor"
+        }
+      ]
+      endPoint Solid {
+        translation -0.07 0.09 0
+        rotation -1 2.264919095324679e-10 2.263116197325639e-10 1.5699999999999965
+        children [
+          DEF wheel_shape Shape {
+            appearance PBRAppearance {
+              baseColor 0.8 0.2 0.8
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.04
+              radius 0.065
+            }
+          }
+        ]
+        name "solid(3)"
+        boundingObject USE wheel_shape
+        physics Physics {
+        }
+        locked TRUE
+      }
+    }
+    DEF FL HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 -1 0
+        anchor -0.07 -0.09 0
+      }
+      device [
+        RotationalMotor {
+          name "fl_motor"
+        }
+      ]
+      endPoint Solid {
+        translation -0.07 -0.09 0
+        rotation -1 -1.720649318197721e-10 -1.7192796643106294e-10 1.5699999999999947
+        children [
+          DEF wheel_shaoe Shape {
+            appearance PBRAppearance {
+              baseColor 0.8 0.2 0.8
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.04
+              radius 0.065
+            }
+          }
+        ]
+        name "solid(2)"
+        boundingObject USE wheel_shaoe
+        physics Physics {
+        }
+        locked TRUE
+      }
+    }
+    DEF RL HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 -1 0
+        anchor 0.07 -0.09 0
+      }
+      device [
+        RotationalMotor {
+          name "rl_motor"
+        }
+      ]
+      endPoint Solid {
+        translation 0.07 -0.09 0
+        rotation -1 -2.2605950347646438e-10 -2.2587955787913898e-10 1.5699999999999985
+        children [
+          DEF wheel_shape Shape {
+            appearance PBRAppearance {
+              baseColor 0.8 0.2 0.8
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.04
+              radius 0.065
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel_shape
+        physics Physics {
+        }
+        locked TRUE
+      }
+    }
+    DEF RR HingeJoint {
+      jointParameters HingeJointParameters {
+        axis 0 -1 0
+        anchor 0.07 0.09 0
+      }
+      device [
+        RotationalMotor {
+          name "rr_motor"
+        }
+      ]
+      endPoint Solid {
+        translation 0.07 0.09 0
+        rotation -1 1.7249492948996463e-10 1.7235762180122744e-10 1.5699999999999956
+        children [
+          DEF wheel_shape Shape {
+            appearance PBRAppearance {
+              baseColor 0.8 0.2 0.8
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.04
+              radius 0.065
+            }
+          }
+        ]
+        boundingObject USE wheel_shape
+        physics Physics {
+        }
+        locked TRUE
+      }
+    }
+    DEF robo_shape Shape {
+      appearance PBRAppearance {
+        baseColor 1 1 0
+        metalness 0
+      }
+      geometry Box {
+        size 0.28 0.14 0.08
+      }
+    }
+  ]
+  name "wall_robot"
+  boundingObject USE robo_shape
+  physics Physics {
+  }
+  controller "wall_robot_controller"
+}
+DEF circle_robot Robot {
+  translation -0.7389841425053819 -2.8485702057696884 0.02387723393497934
+  rotation 0.001919936735234697 0.02621149040213524 0.999654576148097 -0.022414346353865966
+  children [
+    DEF robo_shape Shape {
+      appearance PBRAppearance {
+        baseColor 0.2 0.6 0.7
+        metalness 0
+      }
+      geometry Box {
+        size 0.28 0.14 0.09
+      }
+    }
+    DEF ir_left DistanceSensor {
+      translation -0.14 -0.03 -0.045
+      rotation 0 1 0 1.57
+      children [
+        DEF ir_shape Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry Box {
+            size 0.005 0.01 0.01
+          }
+        }
+      ]
+      name "ir_left"
+      boundingObject USE ir_shape
+      physics Physics {
+      }
+      locked TRUE
+      lookupTable [
+        0 0 0
+        0.2 1000 0
+      ]
+      type "infra-red"
+    }
+    DEF ir_right DistanceSensor {
+      translation -0.14 0.03 -0.045
+      rotation 0 1 0 1.57
+      children [
+        DEF ir_shape Shape {
+          appearance PBRAppearance {
+            metalness 0
+          }
+          geometry Box {
+            size 0.005 0.01 0.01
+          }
+        }
+      ]
+      name "ir_right"
+      boundingObject USE ir_shape
+      physics Physics {
+      }
+      locked TRUE
+      lookupTable [
+        0 0 0
+        0.2 1000 0
+      ]
+      type "infra-red"
+    }
+    DEF front_right HingeJoint {
+      jointParameters HingeJointParameters {
+        position 109.94443052224705
+        axis 0 -1 0
+        anchor -0.07 0.09 0
+      }
+      device [
+        RotationalMotor {
+          name "front_right_motor"
+        }
+      ]
+      endPoint Solid {
+        translation -0.07 0.09 0
+        rotation 0.003997938802016172 0.7073826158692296 0.7068195323074632 3.149594858359769
+        children [
+          DEF wheel_shape Shape {
+            appearance PBRAppearance {
+              baseColor 0 0 0
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.04
+              radius 0.065
+            }
+          }
+        ]
+        name "solid(3)"
+        boundingObject USE wheel_shape
+        physics Physics {
+        }
+        locked TRUE
+      }
+    }
+    DEF frony_left HingeJoint {
+      jointParameters HingeJointParameters {
+        position 176.45385024284323
+        axis 0 -1 0
+        anchor -0.07 -0.09 0
+      }
+      device [
+        RotationalMotor {
+          name "front_left_motor"
+        }
+      ]
+      endPoint Solid {
+        translation -0.07 -0.09 0
+        rotation -0.9348163846900821 -0.25121580195859483 -0.25101583169446523 1.6373559491826242
+        children [
+          DEF wheel_shape Shape {
+            appearance PBRAppearance {
+              baseColor 0 0 0
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.04
+              radius 0.065
+            }
+          }
+        ]
+        name "solid(2)"
+        boundingObject USE wheel_shape
+        physics Physics {
+        }
+        locked TRUE
+      }
+    }
+    DEF rear_left HingeJoint {
+      jointParameters HingeJointParameters {
+        position 176.45441517428557
+        axis 0 -1 0
+        anchor 0.07 -0.09 0
+      }
+      device [
+        RotationalMotor {
+          name "rear_left_motor"
+        }
+      ]
+      endPoint Solid {
+        translation 0.07 -0.09 0
+        rotation -0.9346833647268208 -0.2514633543148369 -0.251263186996583 1.6374979388162962
+        children [
+          DEF wheel_shape Shape {
+            appearance PBRAppearance {
+              baseColor 0 0 0
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.04
+              radius 0.065
+            }
+          }
+        ]
+        name "solid(1)"
+        boundingObject USE wheel_shape
+        physics Physics {
+        }
+        locked TRUE
+      }
+    }
+    DEF rear_right HingeJoint {
+      jointParameters HingeJointParameters {
+        position 109.94499913176092
+        axis 0 -1 0
+        anchor 0.07 0.09 0
+      }
+      device [
+        RotationalMotor {
+          name "rear_right_motor"
+        }
+      ]
+      endPoint Solid {
+        translation 0.07 0.09 0
+        rotation 0.003796983509165815 0.7073831699108467 0.7068200859080853 3.149192633715366
+        children [
+          DEF wheel_shape Shape {
+            appearance PBRAppearance {
+              baseColor 0 0 0
+              metalness 0
+            }
+            geometry Cylinder {
+              height 0.04
+              radius 0.065
+            }
+          }
+        ]
+        boundingObject USE wheel_shape
+        physics Physics {
+        }
+        locked TRUE
+      }
+    }
+  ]
+  name "circle robot"
+  boundingObject USE robo_shape
+  physics Physics {
+  }
+  controller "linecontroller"
+}
+CurvedRoadSegment {
+  translation -0.69 -0.83 -0.0399
+  width 0.11
+  numberOfLanes 1
+  rightBorder FALSE
+  leftBorder FALSE
+  curvatureRadius 2
+  appearance DEF black_road PBRAppearance {
+    baseColor 0 0 0
+    metalness 0
+  }
+  pavementAppearance Pavement {
+    type "black stone"
+  }
+  bottomTexture [
+    ""
+  ]
+  locked FALSE
+  roadBoundingObject TRUE
+}
+CurvedRoadSegment {
+  translation -0.69 -0.83 -0.0399
+  rotation 0 0 -1 -1.5707953071795862
+  name "road(1)"
+  width 0.11
+  numberOfLanes 1
+  rightBorder FALSE
+  leftBorder FALSE
+  curvatureRadius 2
+  appearance USE black_road
+  locked FALSE
+  roadBoundingObject TRUE
+}
+CurvedRoadSegment {
+  translation -0.69 -0.83 -0.0399
+  rotation 0 0 1 3.14159
+  name "road(3)"
+  width 0.11
+  numberOfLanes 1
+  rightBorder FALSE
+  leftBorder FALSE
+  curvatureRadius 2
+  appearance USE black_road
+  locked FALSE
+}

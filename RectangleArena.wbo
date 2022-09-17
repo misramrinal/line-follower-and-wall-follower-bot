@@ -1,0 +1,8 @@
+#VRML_OBJ R2022a utf8
+RectangleArena {
+  translation 0 -0.59 -0.04
+  floorSize 10 10
+  floorAppearance PBRAppearance {
+    metalness 0
+  }
+}
